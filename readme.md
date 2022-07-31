@@ -5,7 +5,7 @@
     
     1. 複製程式碼
     
-    git clone https://github.com/RachelJTH/AC-practice.git
+    git clone https://github.com/RachelJTH/AC-Restaurant_list.git
     
     2. 執行腳本
     ```
