@@ -31,6 +31,10 @@ const RestInfo = require('./models/restInfo')
 // setting every routes to use the static file, 'public' which includes bootstrap and popper, etc.
 app.use(express.static('public'))
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2476f2056916af1882bfdff2f21e9b64c4f750f2
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended:true }))
 
@@ -38,6 +42,7 @@ app.use(bodyParser.urlencoded({ extended:true }))
 app.get('/restaurants', (req, res) => {
     RestInfo.find()
         .lean() // 轉為js物件
+<<<<<<< HEAD
         .then(rests => res.render('index', { rests:rests }))  
         .catch(error => console.error(error))
 })
@@ -63,11 +68,16 @@ app.post('/restaurants/new', (req, res) => {
     RestInfo.create({ restInfo })
         .then(() => res.redirect('/restaurants')) // 重新導回首頁
         .catch(error => console.log(error))
+=======
+        .then( rests => res.render('index', { rests:rests }))  
+        .catch(error => console.error(error))
+>>>>>>> 2476f2056916af1882bfdff2f21e9b64c4f750f2
 })
 
 // show the details
 app.get('/restaurants/:id', (req, res) => {
     const restId = req.params.id
+<<<<<<< HEAD
     RestInfo.findById(restId)
         .lean()
         .then(detail => {
@@ -86,12 +96,31 @@ app.get('/restaurants/:id/edit', (req, res) => {
     RestInfo.findById(restId)
         .lean()
         .then(detail => {
+=======
+    RestInfo.find()
+        .lean()
+        .then(details => {
+            const detail = details.find(detail => restId === detail.id.toString())
+            res.render('show', { detail:detail })
+        })
+        .catch(error => console.error(error))
+})  
+
+// Edit
+app.get('/restaurants/:id/edit', (req, res) => {
+    const restId = req.params.id
+    RestInfo.find()
+        .lean()
+        .then(details => {
+            const detail = details.find(detail => restId === detail.id.toString())
+>>>>>>> 2476f2056916af1882bfdff2f21e9b64c4f750f2
             res.render('edit', { info:detail })
         })
         .catch(error => console.error(error))
 })
 
 app.post('/restaurants/:id/edit', (req, res) => {
+<<<<<<< HEAD
     // console.log(req.params)
     const restId = req.params
     const name = req.body.name
@@ -118,6 +147,25 @@ app.post('/restaurants/:id/edit', (req, res) => {
             detail.description = description
             console.log(detail)
             // return detail.save()
+=======
+    const restId = req.params.id
+    
+    // const detail = restList.results.find(rest => rest.id.toString() === id)
+    RestInfo.find()
+        .lean()
+        .then(details => {
+            const detail = details.find(detail => restId === detail.id.toString())
+            detail.name = req.body.name
+            detail.name_en = req.body.name_en
+            detail.category = req.body.category
+            detail.image = req.body.image
+            detail.location = req.body.location
+            detail.phone = req.body.phone
+            detail.google_map = req.body.google_maps
+            detail.rating = req.body.rating
+            detail.description = req.body.description
+            return detail.save()
+>>>>>>> 2476f2056916af1882bfdff2f21e9b64c4f750f2
         })  
         .then(() => res.redirect('/restaurants'))
         .catch(error => console.log(error))
