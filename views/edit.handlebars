@@ -1,0 +1,49 @@
+<form action="/restaurants/{{ info.id }}/edit" method="post">
+    <div>
+        <p> 餐廳名稱
+            <input type="text" placeholder="{{ info.name }}" name="name" value ="{{ info.name }}">
+        </p>
+    </div>
+    <div>
+        <p> Restaurant
+            <input type="text" placeholder="{{ info.name_en }}" name="name_en" value ="{{ info.name_en }}">
+        </p>
+    </div>
+    <div>
+        <p> 分類
+            <input type="text" placeholder="{{ info.category }}" name="category" value ="{{ info.category }}">        
+        </p>
+    </div>
+    <div>
+        <p> 餐廳圖
+            <input type="text" placeholder="{{ info.image }}" name="image" value ="{{ info.image }}">
+        </p>
+    </div>
+    <div>
+        <P> 地址
+            <input type="text" placeholder="{{ info.location }}" name="location" value ="{{ info.location }}">
+        </P>
+    </div>
+    <div>
+        <p> 聯絡電話
+            <input type="text" placeholder="{{ info.phone }}" name="phone" value ="{{ info.phone }}">
+        </p>
+    </div>
+    <div>
+        <p> 評分
+            <input type="text" placeholder="{{ info.rating }}" name="rating" value ="{{ info.rating }}">
+        </p>
+    </div>
+    <div>
+        <p> 餐廳介紹
+            <input type="text" placeholder="{{ info.description }}" name="description" value ="{{ info.description }}">
+        </p>
+    </div>
+    <div>
+        <p> google連結
+            <input type="text" placeholder="{{ info.google_map }}" name="google_map" value ="{{ info.google_map }}">
+        </p>
+    </div>
+    <button type="submit">save</button>
+    <a href="/restaurants/{{ info.id }}/show">back</a>
+</form>
