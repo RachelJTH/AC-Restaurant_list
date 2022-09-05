@@ -132,8 +132,9 @@ app.post('/restaurants/:id/edit', (req, res) => {
     const google_maps = req.body.google_maps
     const rating = req.body.rating
     const description = req.body.description
-
-    RestInfo.findById(restId)
+    let id = req.params.id
+     
+    RestInfo.findById(id)
         .lean()
         .then(detail => {
             detail.name = name
