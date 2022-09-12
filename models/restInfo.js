@@ -12,7 +12,6 @@ const restSchema = new Schema({
     },
     name_en: {
         type: String,
-        required: true
     },
     category: {
         type: String,
@@ -20,19 +19,16 @@ const restSchema = new Schema({
     },
     image: {
         type: String,
-        required: true
     },
     location: {
         type: String,
-        required: true
+        required: false
     },
     phone: {
         type: String,
-        required: true
     },
     google_map: {
         type: String,
-        required: true
     },
     rating: {
         type: Number,
@@ -40,7 +36,6 @@ const restSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
     },
 })
 

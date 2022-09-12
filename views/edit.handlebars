@@ -1,53 +1,105 @@
-<form action="/restaurants/{{ info.id }}/edit" method="post">
-    <div>
-        <p> 餐廳名稱
-            <input type="text" placeholder="{{ info.name }}" name="name" value ="{{ info.name }}">
-        </p>
+<div class="row">
+    <div class="col-12 col-lg-10 col-xl-6 mx-auto mt-5">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-utensils"></i>  Edit Restaurant Information </h5>
+            <hr> 
+            
+            <form action="/restaurants/{{ uniqueID }}/edit" method="post" novalidate>
+                    {{!-- 加入亂數產生器作為id(js待引用) --}}
+                <div class="row mb-1 g-2">
+                    <label for="id" class="col-md-3 col-form-label"> ID </label>
+                    <div class="col-md-8">
+                        <input type="number" name="id" id="id" value="{{detail.id}}"></input>
+                        {{!-- <label class="form-check-label" for="id"> 帶出隨機ID </label> --}}
+                        <small class="text-muted form-text">Random Id</small>
+                    </div>
+                </div>
+                 <div class="row mb-1 g-2">
+                    <label for="name" class="col-md-3 col-form-label"> 餐廳名稱 </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input type="text" class="form-control" id="name" name="name" size="40" value="{{detail.name}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1 g-2">
+                    <label for="name_en" class="col-md-3 col-form-label"> Restaurant </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input type="text" class="form-control" id="name_en" name="name_en" size="40" value="{{detail.name_en}}">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1 g-2">
+                    <label for="category" class="col-md-3 col-form-label"> <i class="fas fa-bookmark pr-1"></i> 餐廳類別 </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input list="dish_type" class="form-control" id="category" name="category" size="category" value="{{detail.category}}" >
+                            <datalist id="dish_type">
+                                <option>美式</option>
+                                <option>日本料理</option>
+                                <option>中東料理</option>
+                                <option>咖啡</option>
+                                {{!-- <option value=""selected></option> --}}
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1 g-2">
+                    <label for="phone" class="col-md-3 col-form-label"> <i class="fas fa-mobile-alt pr-2"></i> 聯絡電話 </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input type="tel" class="form-control col-md-6" id="phone" name="phone" pattern="[0-9]{2} [0-9]{4} [0-9]{4}" size="40" value="{{detail.phone}}"  >
+                            <small class="col-md-4 text-muted" >ex: 02 1234 5678</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1 g-2">
+                    <label for="location" class="col-md-3 col-form-label"> <i class="fas fa-map-marker-alt pr-2"></i> 地址 </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input type="text" class="form-control" id="location" name="location" maxlength="40" size="50" value="{{detail.location}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1 g-2">
+                    <label for="rating" class="col-md-3 col-form-label"><i class="fas fa-star pr-2"></i> 評分 </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">      
+                            <input type="range" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" value="5" oninput="score.value=this.value" value="{{detail.rating}} ">
+                            <output id="score" name="score" for="rating" class="ml-2"> 5 </output>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1 g-2">
+                    <label for="description" class="col-md-3 col-form-label"><i class="fas fa-file-alt pr-2"></i> 餐廳介紹 </label>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">      
+                           <textarea name="description" id="description" cols="50" rows="10">{{detail.description}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                {{!-- 上傳餐廳照片 --}}
+                {{!-- 上傳餐廳照片 --}}
+                <div class="row mb-1 g-2">
+                    <label for="image" class="col-md-3 col-form-label mt-3"><i class="fas fa-camera-retro pr-2"></i> 餐廳影像 </label>
+                    <div class="col-md-8">
+                        <dir class="form-check form-check-inline">
+                            {{!-- <img class="" name="image" id="image" src="https://cdn-icons-png.flaticon.com/512/1046/1046798.png" alt=""> --}}
+                            <input type="text" name="image" id="image" size="50" class="form-control" value="{{detail.image}}" >
+                        </dir>
+                    </div>
+                </div>
+
+                <button type="submit" class="my-3" id="submit-btn">儲存</button>
+            </form>
+        </div>    
+        </div>
+        <div class="d-flex flex-row-reverse mt-3 mb-5">
+            <a href="/restaurants/">返回首頁</a>
+        </div>
     </div>
-    <div>
-        <p> Restaurant
-            <input type="text" placeholder="{{ info.name_en }}" name="name_en" value ="{{ info.name_en }}">
-        </p>
-    </div>
-    <div>
-        <p> 分類
-            <input type="text" placeholder="{{ info.category }}" name="category" value ="{{ info.category }}">        
-        </p>
-    </div>
-    <div>
-        <p> 餐廳圖
-            <input type="text" placeholder="{{ info.image }}" name="image" value ="{{ info.image }}">
-        </p>
-    </div>
-    <div>
-        <P> 地址
-            <input type="text" placeholder="{{ info.location }}" name="location" value ="{{ info.location }}">
-        </P>
-    </div>
-    <div>
-        <p> 聯絡電話
-            <input type="text" placeholder="{{ info.phone }}" name="phone" value ="{{ info.phone }}">
-        </p>
-    </div>
-    <div>
-        <p> 評分
-            <input type="text" placeholder="{{ info.rating }}" name="rating" value ="{{ info.rating }}">
-        </p>
-    </div>
-    <div>
-        <p> 餐廳介紹
-            <input type="text" placeholder="{{ info.description }}" name="description" value ="{{ info.description }}">
-        </p>
-    </div>
-    <div>
-        <p> google連結
-            <input type="text" placeholder="{{ info.google_map }}" name="google_map" value ="{{ info.google_map }}">
-        </p>
-    </div>
-    <button type="submit">save</button>
-<<<<<<< HEAD
-    <a href="/restaurants/{{ info.id }}/show">back</a>
-=======
-    <a href="/restaurants/">back</a>
->>>>>>> 2476f2056916af1882bfdff2f21e9b64c4f750f2
-</form>
+</div>
+
