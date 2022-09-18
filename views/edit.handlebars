@@ -5,7 +5,7 @@
             <h5 class="card-title"><i class="fas fa-utensils"></i>  Edit Restaurant Information </h5>
             <hr> 
             
-            <form action="/restaurants/{{ uniqueID }}/edit" method="post" novalidate>
+            <form action="/restaurants/{{ uniqueID }}?_method=PUT" method="post" novalidate>
                     {{!-- 加入亂數產生器作為id(js待引用) --}}
                 <div class="row mb-1 g-2">
                     <label for="id" class="col-md-3 col-form-label"> ID </label>

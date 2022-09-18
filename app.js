@@ -3,6 +3,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 
@@ -30,8 +31,11 @@ const RestInfo = require('./models/restInfo')
 // setting every routes to use the static file, 'public' which includes bootstrap and popper, etc.
 app.use(express.static('public'))
 
-// 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
+// 設定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(express.urlencoded({ extended:true }))
+
+// 設定每一筆請求都先透過 method override 進行前置處理
+app.use(methodOverride('_method'))
 
 // set the main page
 app.get('/restaurants', (req, res) => {
@@ -80,7 +84,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // Edit and Save
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
     const uniqueID = req.params.id
     const {id, name, name_en, category, location, phone, rating, description, image} = req.body
     RestInfo.findById(uniqueID)
@@ -102,7 +106,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // Delete
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
     const uniqueID = req.params.id
     RestInfo.findById(uniqueID)
         .then(detail => {
