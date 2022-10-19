@@ -13,7 +13,7 @@
     ```
 
     3. 進入主畫面
-    Main Page: http://localhost:3000/restaurants
+    Main Page: http://localhost:3000/main
 
 
 ### Prerequisites
