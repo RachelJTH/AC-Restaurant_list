@@ -1,33 +1,45 @@
-<!-- search bar -->
-
-<div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." aria-describedby="search-button" value={{keyword}}>
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+<div class="row">
+  <!-- search bar -->
+  <div class="container search-bar col-md-8">
+    <div class="search-bar-outer">
+      <div class="search-bar-inner">
+        <form action="/search">
+          <h4 class="mb-2">尋找餐廳：</h4>
+          <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." aria-describedby="search-button" value={{keyword}}>
+            <div class="input-group-append">
+              <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+            </div>
           </div>
-        </div>
-        {{!-- no searching results --}}
-        {{#if alertInfo}}
-            <small class="text-muted form-text"> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{alertInfo}} </small>
-        {{/if}}
-      </form>
+          {{!-- no searching results --}}
+          {{#if alertInfo}}
+              <small class="text-muted form-text"> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{alertInfo}} </small>
+          {{/if}}
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {{!-- sorting dropdown --}}
+  <div class="container col-md-4 mt-2">
+    <div class="row">    
+      <label for="sorting" class="col-form-label mr-2"> <i class="fas fa-bookmark pr-1"></i>Sorting</label>
+      <div class="form-check form-check-inline">
+        <form action="/sort" method="post">
+          <input list="sorting_type" class="form-control col-md-6" id="sortingType" name="sortingType" size="category" onfocus="this.value=''" onchange="this.blur();">
+            <datalist id="sorting_type">
+              <option value="A > Z" selected>1</option>
+              <option value="Z > A">2</option>
+              <option value="類別">3</option>
+              <option value="地區">4</option>
+              {{!-- <option value=""selected></option> --}}
+            </datalist>
+          <button type="submit" id="submit-btn" class="col-md-4">確認</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-
- {{!-- add new restaurant --}}
-<div class="row add-btn">
-  <div class="col-4 col-lg-6 mx-auto">
-    <dir class="d-flex flex-row-reverse">
-      <a href="/restaurants/new" class="btn btn-secondary rounded-pill" role="button"><i class="fas fa-plus"></i> Add New </a>
-    </dir>
-  </div>
-</div> 
 
 <!-- restaurant list -->
 <div class="container">
@@ -53,7 +65,7 @@
               <div class="row justify-content-end my-auto">
                 <a href="/restaurants/{{this._id}}/edit" class="mr-2 my-auto">Edit</a>
                 <a href="/restaurants/{{this._id}}" class="mr-2 my-auto">Detail</a>
-                  <form action="/restaurants/{{this._id}}?_method=DELETE" method="post">
+                  <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
                     <button class="btn btn-secondary btn-sm mr-2">
                       Delete
                     </button>

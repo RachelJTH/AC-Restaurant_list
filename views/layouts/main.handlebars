@@ -5,10 +5,18 @@
         <!-- navigation -->
         <nav class="navbar navbar-light bg-light">
             <div class="container">
-            <a class="navbar-brand" href="/restaurants">
-                <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-                我的餐廳清單
+                <a class="navbar-brand" href="/main">
+                    <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+                    我的餐廳清單
                 </a>
+                {{!-- add new restaurant --}}
+                <div class="row add-btn">
+                    <div class="col-4 col-lg-6 mx-auto">
+                        <dir class="d-flex flex-row-reverse">
+                        <a href="/restaurants/new" class="btn btn-secondary rounded-pill" role="button"><i class="fas fa-plus"></i> Create </a>
+                        </dir>
+                    </div>
+                </div> 
             </div>
         </nav>
 
