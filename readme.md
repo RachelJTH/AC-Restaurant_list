@@ -1,6 +1,6 @@
 # Project - A1: 打造餐廳清單
 
-![alt 文字](https://github.com/RachelJTH/AC-Restaurant_list/blob/main/localhost_3000_restaurants.png)
+![alt 文字](https://github.com/RachelJTH/AC-Restaurant_list/blob/main/localhost_3000_main_1020.png)
 ## Getting Started
     
     1. 複製程式碼
